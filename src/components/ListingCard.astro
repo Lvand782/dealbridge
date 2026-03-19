@@ -1,0 +1,62 @@
+---
+import type { Listing } from "../data/listings";
+
+interface Props {
+  listing: Listing;
+}
+const { listing } = Astro.props;
+---
+
+<div class="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
+  <!-- Hero image -->
+  <div class="relative h-44 overflow-hidden">
+    <img
+      src={listing.image}
+      alt={listing.title}
+      class="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
+      loading="lazy"
+    />
+    <!-- Category badge over image -->
+    <div class="absolute top-3 left-3 flex items-center gap-2">
+      <span class="text-xs font-bold bg-navy text-white px-2.5 py-1 rounded-full uppercase tracking-wide">{listing.category}</span>
+    </div>
+    <div class="absolute top-3 right-3">
+      <span class="text-xs bg-white/90 text-gray-600 px-2.5 py-1 rounded-full">{listing.location}</span>
+    </div>
+  </div>
+
+  <div class="p-5 flex flex-col flex-1">
+    <h3 class="text-base font-bold text-navy mb-2 leading-snug">{listing.title}</h3>
+    <p class="text-gray-500 text-sm leading-relaxed mb-4 flex-1">{listing.description}</p>
+
+    <!-- Financials -->
+    <div class="grid grid-cols-3 gap-3 mb-5 border-t border-gray-100 pt-4">
+      <div>
+        <p class="text-xs text-gray-400 mb-0.5">Asking Price</p>
+        <p class="text-sm font-bold text-navy">{listing.askingPrice}</p>
+      </div>
+      <div>
+        <p class="text-xs text-gray-400 mb-0.5">Revenue</p>
+        <p class="text-sm font-bold text-navy">{listing.annualRevenue}</p>
+      </div>
+      <div>
+        <p class="text-xs text-gray-400 mb-0.5">Cash Flow</p>
+        <p class="text-sm font-bold text-navy">{listing.cashFlow}</p>
+      </div>
+    </div>
+
+    <!-- Tags -->
+    <div class="flex flex-wrap gap-1.5 mb-4">
+      {listing.tags.map((tag) => (
+        <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">{tag}</span>
+      ))}
+    </div>
+
+    <a
+      href={`/listings/${listing.slug}`}
+      class="block text-center text-sm font-semibold bg-navy text-white px-4 py-2.5 rounded-lg hover:bg-navy/90 transition-colors"
+    >
+      View Details (NDA Required)
+    </a>
+  </div>
+</div>

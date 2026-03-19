@@ -1,0 +1,53 @@
+---
+import { deals } from "../data/deals";
+---
+
+<section class="py-20 bg-light-blue overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="inline-block text-orange-500 font-semibold text-sm uppercase tracking-wide mb-3">Deal Stories</span>
+      <h2 class="text-3xl md:text-4xl font-black text-navy mb-4">Real Deals. Real Outcomes.</h2>
+      <p class="text-gray-500 text-lg max-w-xl mx-auto">
+        These aren't stock photos and made-up names. These are businesses that found buyers through DealBridge.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {deals.map((deal) => (
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+          <!-- Photo -->
+          <div class="relative h-36 overflow-hidden">
+            <img
+              src={deal.image}
+              alt={deal.businessName}
+              class="w-full h-full object-cover object-center"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+              <span class="text-xs font-bold text-white bg-orange-500 px-2 py-0.5 rounded-full">{deal.category}</span>
+              <span class="text-xs text-white/80">{deal.closedYear}</span>
+            </div>
+          </div>
+
+          <div class="p-5">
+            <h3 class="text-lg font-black text-navy mb-1">{deal.businessName}</h3>
+            <p class="text-sm text-gray-400 mb-3 flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+              </svg>
+              {deal.location}
+            </p>
+
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">{deal.story}</p>
+
+            <div class="border-t border-gray-100 pt-3">
+              <p class="text-xs text-gray-400 mb-0.5">Sold For</p>
+              <p class="text-xl font-black text-navy">{deal.salePrice}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.dealonomy.com)",
+      "Read(//c/Users/lvand/.claude/projects/c--Users-lvand-Documents-GitHub-Business-broker/memory/**)",
+      "Bash(npm create:*)",
+      "Bash(mv shining-neutron/* .)",
+      "Bash(mv shining-neutron/.* .)",
+      "Bash(rmdir shining-neutron:*)",
+      "Bash(npm install:*)",
+      "Bash(npx astro:*)",
+      "Bash(npm run:*)",
+      "Bash(gh auth:*)"
+    ]
+  }
+}

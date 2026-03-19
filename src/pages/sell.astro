@@ -1,0 +1,508 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { sellerBenefits } from "../data/benefits";
+---
+
+<Base title="Sell a Business" description="Get a free business valuation and sell with zero commission on DealBridge.">
+  <Navbar />
+  <main>
+
+    <!-- ── HERO ── -->
+    <section class="text-white py-16 md:py-24 relative overflow-hidden">
+      <div class="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1920&q=80"
+          alt="Business professionals reviewing documents"
+          class="w-full h-full object-cover object-center"
+        />
+        <div class="absolute inset-0 bg-navy/88"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <span class="inline-block text-orange-400 font-semibold text-sm uppercase tracking-wide mb-4">Sell with DealBridge</span>
+            <h1 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
+              Exit on Your Terms.<br />
+              <span class="text-orange-400">Start with a Free Valuation.</span>
+            </h1>
+            <p class="text-white/80 text-lg leading-relaxed mb-4">
+              You've invested years into your business. We'll make sure you get what it's worth — with no upfront cost and no commission unless we close.
+            </p>
+            <ul class="space-y-2 mb-8 text-white/70 text-sm">
+              {["Free written valuation within 3 business days", "Confidential listing — buyers sign NDA before viewing", "$0 commission until deal closes", "Dedicated M&A advisor from listing to closing"].map((item) => (
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-orange-400 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Valuation Form -->
+          <div class="bg-white rounded-2xl p-8 text-gray-900 shadow-xl">
+            <h2 class="text-xl font-black text-navy mb-6">Request Your Free Valuation</h2>
+            <form class="space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-600 mb-1.5" for="fname">First Name</label>
+                  <input id="fname" type="text" placeholder="Jane" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-600 mb-1.5" for="lname">Last Name</label>
+                  <input id="lname" type="text" placeholder="Smith" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5" for="email">Business Email</label>
+                <input id="email" type="email" placeholder="jane@yourbusiness.com" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5" for="phone">Phone Number</label>
+                <input id="phone" type="tel" placeholder="(555) 000-0000" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5" for="biz-type">Business Type</label>
+                <select id="biz-type" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy">
+                  <option value="">Select an industry...</option>
+                  <option>Home Services</option>
+                  <option>Food & Beverage</option>
+                  <option>Health & Fitness</option>
+                  <option>Automotive</option>
+                  <option>Retail</option>
+                  <option>E-Commerce</option>
+                  <option>Professional Services</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5" for="revenue">Annual Revenue (approx.)</label>
+                <select id="revenue" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy">
+                  <option value="">Select a range...</option>
+                  <option>Under $500K</option>
+                  <option>$500K – $1M</option>
+                  <option>$1M – $2.5M</option>
+                  <option>$2.5M – $5M</option>
+                  <option>$5M+</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5" for="timeline">Selling Timeline</label>
+                <select id="timeline" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy">
+                  <option value="">Select...</option>
+                  <option>ASAP (within 3 months)</option>
+                  <option>3–6 months</option>
+                  <option>6–12 months</option>
+                  <option>Exploring options (12+ months)</option>
+                </select>
+              </div>
+              <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3.5 rounded-xl transition-colors text-sm mt-2">
+                Request My Free Valuation →
+              </button>
+              <p class="text-xs text-center text-gray-400">100% confidential. No spam. No obligation.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BENEFITS STRIP ── -->
+    <section class="py-14 bg-light-blue">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-black text-navy text-center mb-10">Why Sellers Choose DealBridge</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {sellerBenefits.map((b) => (
+            <div class="bg-white rounded-2xl p-5 shadow-sm">
+              <h3 class="text-base font-bold text-navy mb-2">{b.title}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">{b.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── IS IT TIME TO SELL? ── -->
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+          <!-- Image -->
+          <div class="rounded-2xl overflow-hidden h-80 lg:h-full min-h-72 shadow-lg">
+            <img
+              src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80"
+              alt="Business owner reviewing financials with advisor"
+              class="w-full h-full object-cover object-center"
+              loading="lazy"
+            />
+          </div>
+          <!-- Content -->
+          <div>
+            <span class="inline-block text-orange-500 font-semibold text-sm uppercase tracking-wide mb-3">Timing</span>
+            <h2 class="text-3xl md:text-4xl font-black text-navy mb-5">Is Now the Right Time to Sell?</h2>
+            <p class="text-gray-600 text-lg leading-relaxed mb-8">
+              Most business owners wait too long. The best time to sell is when your business is performing well — not when you're burned out or the market shifts. Here are the signals that indicate it's time to start the conversation.
+            </p>
+            <div class="space-y-5">
+              {[
+                {
+                  title: "You've hit a growth plateau",
+                  body: "Revenue has been flat for 12–24 months and you'd need significant capital investment to reach the next level. A strategic buyer can provide that — and pay you for the foundation you built."
+                },
+                {
+                  title: "You're approaching retirement or a life change",
+                  body: "Planning a sale 2–3 years before your target exit date gives you time to maximize value, not just get out. Rushed exits leave money on the table."
+                },
+                {
+                  title: "A buyer has already approached you",
+                  body: "Unsolicited offers are often well below market. Before responding, get an independent valuation so you know what a fair offer looks like."
+                },
+                {
+                  title: "You're tired of running it",
+                  body: "Owner fatigue is real. If your best years of energy are behind the business, buyers can see it in the numbers. Selling while revenue is healthy protects your outcome."
+                },
+              ].map((item) => (
+                <div class="flex gap-4">
+                  <div class="w-2 h-2 bg-orange-500 rounded-full mt-2.5 flex-shrink-0"></div>
+                  <div>
+                    <h3 class="font-bold text-navy text-base mb-1">{item.title}</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">{item.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HOW YOUR BUSINESS IS VALUED ── -->
+    <section class="py-20 bg-navy text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+          <!-- Content -->
+          <div>
+            <span class="inline-block text-orange-400 font-semibold text-sm uppercase tracking-wide mb-3">Valuation 101</span>
+            <h2 class="text-3xl md:text-4xl font-black mb-5">How We Value Your Business</h2>
+            <p class="text-white/75 text-lg leading-relaxed mb-8">
+              Most small business sales are priced using a multiple of your Seller's Discretionary Earnings (SDE) — the total financial benefit a working owner receives from the business annually. Here's how it breaks down.
+            </p>
+
+            <div class="space-y-6">
+              {[
+                {
+                  label: "Step 1 — Calculate SDE",
+                  body: "We start with your net profit and add back owner salary, benefits, depreciation, and any one-time expenses. SDE shows a buyer exactly what they could earn running the business."
+                },
+                {
+                  label: "Step 2 — Apply an Industry Multiple",
+                  body: "Multiples typically range from 2x–5x SDE depending on your industry, business size, growth trajectory, and risk profile. A home services company with recurring contracts commands a higher multiple than a one-time-project business."
+                },
+                {
+                  label: "Step 3 — Adjust for Assets & Risk",
+                  body: "Equipment, real estate, inventory, and intellectual property add value. Concentration risk (one client = 40% of revenue) reduces it. We document all of this in your written valuation report."
+                },
+                {
+                  label: "Step 4 — Compare to Market",
+                  body: "We benchmark your business against recently closed comparable sales so you know where you stand in the current market — not last year's data."
+                },
+              ].map((item) => (
+                <div class="bg-white/10 border border-white/10 rounded-xl p-5">
+                  <h3 class="font-bold text-orange-400 text-sm mb-1.5">{item.label}</h3>
+                  <p class="text-white/70 text-sm leading-relaxed">{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Image -->
+          <div class="rounded-2xl overflow-hidden h-80 lg:h-full min-h-96 shadow-lg">
+            <img
+              src="https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              alt="Business financial review and valuation documents"
+              class="w-full h-full object-cover object-center"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WHAT BUYERS LOOK FOR ── -->
+    <section class="py-20 bg-light-blue">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+          <!-- Image -->
+          <div class="rounded-2xl overflow-hidden h-72 shadow-lg order-2 lg:order-1">
+            <img
+              src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              alt="Buyer reviewing business acquisition documents"
+              class="w-full h-full object-cover object-center"
+              loading="lazy"
+            />
+          </div>
+          <!-- Content -->
+          <div class="order-1 lg:order-2">
+            <span class="inline-block text-orange-500 font-semibold text-sm uppercase tracking-wide mb-3">Buyer Mindset</span>
+            <h2 class="text-3xl md:text-4xl font-black text-navy mb-5">What Buyers Are Really Looking For</h2>
+            <p class="text-gray-600 text-lg leading-relaxed mb-8">
+              Understanding what makes a business attractive to buyers helps you prepare long before listing. These six factors drive premium valuations.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { icon: "🔄", title: "Recurring Revenue", body: "Contracts, subscriptions, or loyal repeat customers reduce buyer risk and justify higher multiples." },
+                { icon: "👥", title: "A Team That Runs It", body: "Businesses that don't depend on the owner day-to-day are far more attractive and command higher prices." },
+                { icon: "📈", title: "Consistent Growth", body: "3 years of stable or growing revenue signals that the business model works independent of any single client." },
+                { icon: "📋", title: "Clean Financials", body: "Organized books, filed taxes, and clear profit & loss statements eliminate buyer uncertainty and speed up closing." },
+                { icon: "🏆", title: "Strong Brand & Reputation", body: "Reviews, referrals, and a recognizable name in the community transfer real value to a new owner." },
+                { icon: "⚙️", title: "Documented Processes", body: "SOPs, employee handbooks, and operational systems show buyers the business can run without you." },
+              ].map((item) => (
+                <div class="bg-white rounded-xl p-4 shadow-sm">
+                  <div class="text-2xl mb-2">{item.icon}</div>
+                  <h3 class="font-bold text-navy text-sm mb-1">{item.title}</h3>
+                  <p class="text-gray-500 text-xs leading-relaxed">{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── THE SALE PROCESS ── -->
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+          <span class="inline-block text-orange-500 font-semibold text-sm uppercase tracking-wide mb-3">Step by Step</span>
+          <h2 class="text-3xl md:text-4xl font-black text-navy mb-4">The DealBridge Selling Process</h2>
+          <p class="text-gray-500 text-lg max-w-2xl mx-auto">
+            We've guided hundreds of business owners through this process. Here's exactly what to expect from your first call to closing day.
+          </p>
+        </div>
+
+        <!-- Process timeline -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
+          {[
+            {
+              step: "01",
+              title: "Confidential Consultation",
+              timeline: "Week 1",
+              body: "You speak with a DealBridge advisor — no paperwork, no commitment. We listen to your goals, timeline, and concerns. Everything is fully confidential at this stage."
+            },
+            {
+              step: "02",
+              title: "Business Valuation",
+              timeline: "Week 1–2",
+              body: "We review your last 3 years of financials and deliver a written valuation report within 3 business days. You'll know your number before anyone else does."
+            },
+            {
+              step: "03",
+              title: "Listing & Buyer Outreach",
+              timeline: "Week 2–4",
+              body: "We create a confidential business profile and present it to our vetted buyer network. Prospective buyers sign an NDA before they see any identifying details about your business."
+            },
+            {
+              step: "04",
+              title: "Buyer Meetings & LOI",
+              timeline: "Week 4–8",
+              body: "We vet buyer interest, facilitate introductions, and manage offers. Our advisors help you evaluate Letters of Intent and negotiate deal structure — price, earnouts, seller financing, and transition terms."
+            },
+            {
+              step: "05",
+              title: "Due Diligence",
+              timeline: "Week 8–14",
+              body: "Buyers review your financials, contracts, and operations. We manage the process and protect you from fishing expeditions. Our deal room keeps communication organized and documented."
+            },
+            {
+              step: "06",
+              title: "Closing & Transition",
+              timeline: "Week 14–20",
+              body: "Purchase agreements are signed, funds are transferred, and you hand over the keys. We coordinate with attorneys, accountants, and lenders to get you to closing day with no surprises."
+            },
+          ].map((item) => (
+            <div class="flex gap-5 bg-light-blue rounded-2xl p-6">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-navy rounded-xl flex items-center justify-center">
+                  <span class="text-orange-400 font-black text-sm">{item.step}</span>
+                </div>
+              </div>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h3 class="font-bold text-navy text-base">{item.title}</h3>
+                  <span class="text-xs bg-orange-100 text-orange-600 font-semibold px-2 py-0.5 rounded-full">{item.timeline}</span>
+                </div>
+                <p class="text-gray-600 text-sm leading-relaxed">{item.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Process photo -->
+        <div class="rounded-2xl overflow-hidden h-64 md:h-80 shadow-lg">
+          <img
+            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80"
+            alt="Business advisors collaborating on a deal"
+            class="w-full h-full object-cover object-top"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MISTAKES TO AVOID ── -->
+    <section class="py-20 bg-navy text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+          <!-- Content -->
+          <div>
+            <span class="inline-block text-orange-400 font-semibold text-sm uppercase tracking-wide mb-3">Seller Mistakes</span>
+            <h2 class="text-3xl md:text-4xl font-black mb-5">5 Costly Mistakes Business Owners Make When Selling</h2>
+            <p class="text-white/75 text-lg leading-relaxed mb-8">
+              Most business owners sell once in their lifetime. These are the mistakes we see most often — and how to avoid them.
+            </p>
+            <div class="space-y-5">
+              {[
+                {
+                  num: "1",
+                  title: "Waiting Until Revenue Drops",
+                  body: "Selling from a position of strength gives you leverage. Selling out of desperation gives the buyer all the cards."
+                },
+                {
+                  num: "2",
+                  title: "Not Knowing Your Number",
+                  body: "Accepting the first offer without getting an independent valuation is the single most expensive mistake sellers make."
+                },
+                {
+                  num: "3",
+                  title: "Telling Employees or Customers Too Soon",
+                  body: "Premature disclosure causes key staff to job hunt and customers to look elsewhere. Keep it confidential until closing."
+                },
+                {
+                  num: "4",
+                  title: "Using the Wrong Broker",
+                  body: "Many business brokers take 10–12% commission and move slowly. DealBridge charges zero commission and moves with urgency — because we only earn when you close."
+                },
+                {
+                  num: "5",
+                  title: "Neglecting the Business During the Sale",
+                  body: "Buyers perform due diligence on real-time performance. If revenue dips during the sale process, the deal can fall apart or reprice. Keep running the business."
+                },
+              ].map((item) => (
+                <div class="flex gap-4">
+                  <div class="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span class="text-white font-black text-xs">{item.num}</span>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-white text-base mb-1">{item.title}</h3>
+                    <p class="text-white/65 text-sm leading-relaxed">{item.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Image -->
+          <div class="rounded-2xl overflow-hidden h-80 lg:h-full min-h-96 shadow-lg">
+            <img
+              src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              alt="Business owner in thoughtful discussion with advisor"
+              class="w-full h-full object-cover object-center"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SELLER FAQ ── -->
+    <section class="py-20 bg-light-blue">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <span class="inline-block text-orange-500 font-semibold text-sm uppercase tracking-wide mb-3">Seller FAQ</span>
+          <h2 class="text-3xl md:text-4xl font-black text-navy mb-4">Questions from Sellers</h2>
+          <p class="text-gray-500 text-lg">Answers to the most common concerns we hear from business owners considering a sale.</p>
+        </div>
+
+        <div class="space-y-3">
+          {[
+            {
+              q: "Will my employees find out I'm selling?",
+              a: "Not unless you tell them. We keep all listings confidential. Buyers sign a Non-Disclosure Agreement before receiving any identifying information. The sale can remain completely private until you choose to disclose it — typically at or after closing."
+            },
+            {
+              q: "How long does it take to sell a business?",
+              a: "Most DealBridge listings receive qualified buyer interest within 2–4 weeks. Full closings typically take 90–180 days depending on deal complexity, buyer financing, and due diligence. Simpler asset sales can close faster. SBA-financed deals take longer due to bank processing."
+            },
+            {
+              q: "Do I need 3 years of financial records?",
+              a: "Three years is the standard. However, we can work with 2 years of records plus strong current-year performance. The more documentation you have, the stronger your position and the higher the multiple you can command."
+            },
+            {
+              q: "What if I still want to work in the business after the sale?",
+              a: "This is extremely common and often preferred by buyers. A transition period of 90 days to 2 years, sometimes with an earnout component, helps the new owner succeed and maximizes your total payout."
+            },
+            {
+              q: "How is my asking price determined?",
+              a: "We calculate your Seller's Discretionary Earnings (SDE) — net profit plus owner compensation, benefits, and add-backs — then apply an industry-appropriate multiple (typically 2x–5x). We compare to recent comparable sales and adjust for assets, contracts, and risk factors."
+            },
+            {
+              q: "What does seller financing mean and do I have to offer it?",
+              a: "Seller financing means you receive a portion of the sale price over time rather than all at closing. It can make your business more attractive to buyers who don't have full capital. It's not required, but offering it can increase your sale price and close the deal faster."
+            },
+            {
+              q: "What's the difference between asset sale and stock sale?",
+              a: "In an asset sale, the buyer purchases the business's assets (equipment, client lists, contracts) but not its legal entity. In a stock sale, they buy the entire company including liabilities. Asset sales are more common for small businesses. We'll help you understand the tax implications of each."
+            },
+          ].map((item) => (
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
+              <button class="sell-faq-btn w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-gray-50 transition-colors" aria-expanded="false">
+                <span class="font-semibold text-navy text-sm md:text-base">{item.q}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="sell-faq-icon h-5 w-5 text-orange-500 flex-shrink-0 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <div class="sell-faq-answer hidden px-6 pb-5">
+                <p class="text-gray-600 text-sm leading-relaxed">{item.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FINAL CTA ── -->
+    <section class="py-20 bg-orange-500 text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-black mb-4">Start with What Your Business Is Worth</h2>
+        <p class="text-white/90 text-lg mb-8 max-w-xl mx-auto">
+          A free, confidential valuation takes 3 business days and costs nothing. It's the smartest first step any seller can take.
+        </p>
+        <a
+          href="#"
+          onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+          class="inline-flex items-center gap-2 bg-white text-orange-600 font-bold px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors shadow-lg text-base"
+        >
+          Request My Free Valuation →
+        </a>
+        <p class="mt-4 text-white/70 text-sm">$0 commission · 100% confidential · No obligation</p>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Base>
+
+<script>
+  document.querySelectorAll(".sell-faq-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const answer = btn.nextElementSibling as HTMLElement;
+      const icon = btn.querySelector(".sell-faq-icon") as HTMLElement;
+      const isOpen = !answer.classList.contains("hidden");
+      answer.classList.toggle("hidden");
+      icon.style.transform = isOpen ? "" : "rotate(180deg)";
+      btn.setAttribute("aria-expanded", String(!isOpen));
+    });
+  });
+</script>

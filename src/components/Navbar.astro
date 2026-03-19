@@ -1,0 +1,115 @@
+---
+import { site } from "../data/site";
+---
+
+<nav class="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2">
+        <span class="text-2xl font-black text-navy">Deal</span><span
+          class="text-2xl font-black text-orange-500">Bridge</span
+        >
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a
+          href="/listings"
+          class="text-sm font-medium text-gray-600 hover:text-navy transition-colors"
+          >Browse Businesses</a
+        >
+        <a
+          href="/sell"
+          class="text-sm font-medium text-gray-600 hover:text-navy transition-colors"
+          >Sell a Business</a
+        >
+        <a
+          href="/#how-it-works"
+          class="text-sm font-medium text-gray-600 hover:text-navy transition-colors"
+          >How It Works</a
+        >
+        <a
+          href="/#about"
+          class="text-sm font-medium text-gray-600 hover:text-navy transition-colors"
+          >About</a
+        >
+      </div>
+
+      <!-- CTAs -->
+      <div class="hidden md:flex items-center gap-3">
+        <a
+          href="/sell"
+          class="text-sm font-semibold text-navy border border-navy px-4 py-2 rounded-lg hover:bg-navy hover:text-white transition-colors"
+          >Free Valuation</a
+        >
+        <a
+          href="/listings"
+          class="text-sm font-semibold bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors"
+          >Browse Listings</a
+        >
+      </div>
+
+      <!-- Mobile menu button -->
+      <button
+        id="menu-btn"
+        class="md:hidden p-2 rounded-lg text-gray-600 hover:text-navy"
+        aria-label="Toggle menu"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
+      <a
+        href="/listings"
+        class="block py-2 text-sm font-medium text-gray-700 hover:text-navy">Browse Businesses</a
+      >
+      <a
+        href="/sell"
+        class="block py-2 text-sm font-medium text-gray-700 hover:text-navy">Sell a Business</a
+      >
+      <a
+        href="/#how-it-works"
+        class="block py-2 text-sm font-medium text-gray-700 hover:text-navy">How It Works</a
+      >
+      <a
+        href="/#about"
+        class="block py-2 text-sm font-medium text-gray-700 hover:text-navy">About</a
+      >
+      <div class="pt-2 flex flex-col gap-2">
+        <a
+          href="/sell"
+          class="text-center text-sm font-semibold text-navy border border-navy px-4 py-2 rounded-lg"
+          >Free Valuation</a
+        >
+        <a
+          href="/listings"
+          class="text-center text-sm font-semibold bg-orange-500 text-white px-4 py-2 rounded-lg"
+          >Browse Listings</a
+        >
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  btn?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+  });
+</script>

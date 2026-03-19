@@ -1,0 +1,101 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import ListingCard from "../components/ListingCard.astro";
+import { listings } from "../data/listings";
+import { buyerBenefits } from "../data/benefits";
+---
+
+<Base title="Buy a Business" description="Browse verified, profitable businesses for sale. DealBridge makes acquisition straightforward.">
+  <Navbar />
+  <main>
+    <!-- Hero -->
+    <section class="bg-navy text-white py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-block text-orange-400 font-semibold text-sm uppercase tracking-wide mb-4">For Buyers</span>
+        <h1 class="text-4xl md:text-5xl font-black mb-5 leading-tight">
+          Find a Business Worth<br /><span class="text-orange-400">Your Next Chapter</span>
+        </h1>
+        <p class="text-white/80 text-lg max-w-2xl mx-auto mb-8">
+          Every DealBridge listing is vetted, financially verified, and ready for serious acquisition conversations. No spam. No wasted trips. Just real opportunities.
+        </p>
+        <a href="/listings" class="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl transition-colors">
+          Browse All Businesses
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-black text-navy text-center mb-10">The Buyer Advantage</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {buyerBenefits.map((b) => (
+            <div class="bg-light-blue rounded-2xl p-5">
+              <h3 class="text-base font-bold text-navy mb-2">{b.title}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">{b.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured listings preview -->
+    <section class="py-16 bg-light-blue">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-end justify-between mb-10">
+          <h2 class="text-2xl font-black text-navy">Available Now</h2>
+          <a href="/listings" class="text-sm font-semibold text-navy underline underline-offset-4 hover:text-orange-500 transition-colors">View all →</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {listings.slice(0, 3).map((listing) => (
+            <ListingCard listing={listing} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium membership CTA -->
+    <section class="py-16 bg-navy text-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-block bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-6">Premium Access</span>
+        <h2 class="text-3xl font-black mb-4">Get First-Mover Advantage</h2>
+        <p class="text-white/70 text-lg mb-8">
+          Premium members see new listings 48 hours before they go public. Save deals, compare businesses, and connect with advisors who help you move fast.
+        </p>
+        <div class="bg-white/10 border border-white/20 rounded-2xl p-8 mb-8">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+            {[
+              { price: "Free", label: "Standard Access", features: ["Browse public listings", "Sign NDA online", "Basic search filters"] },
+              { price: "$99/mo", label: "Premium", features: ["Early listing access (+48hr)", "Save & compare deals", "Direct advisor line"] },
+              { price: "Custom", label: "Acquisition Partner", features: ["Dedicated deal flow", "SBA lender introductions", "End-to-end M&A support"] },
+            ].map((tier) => (
+              <div class={`rounded-xl p-5 ${tier.label === "Premium" ? "bg-orange-500" : "bg-white/10"}`}>
+                <p class="text-2xl font-black mb-0.5">{tier.price}</p>
+                <p class={`text-xs font-bold uppercase tracking-wide mb-4 ${tier.label === "Premium" ? "text-white/80" : "text-white/60"}`}>{tier.label}</p>
+                <ul class="space-y-1.5">
+                  {tier.features.map((f) => (
+                    <li class="text-xs text-white/80 flex items-start gap-1.5">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+        <a href="/listings" class="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl transition-colors">
+          Start with Free Access
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

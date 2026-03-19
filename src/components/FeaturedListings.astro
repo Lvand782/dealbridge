@@ -1,0 +1,26 @@
+---
+import { listings } from "../data/listings";
+import ListingCard from "./ListingCard.astro";
+
+const featured = listings.slice(0, 3);
+---
+
+<section class="py-20 bg-white" id="listings">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+      <div>
+        <span class="inline-block text-orange-500 font-semibold text-sm uppercase tracking-wide mb-3">Active Listings</span>
+        <h2 class="text-3xl md:text-4xl font-black text-navy">Featured Businesses for Sale</h2>
+      </div>
+      <a href="/listings" class="text-sm font-semibold text-navy underline underline-offset-4 hover:text-orange-500 transition-colors whitespace-nowrap">
+        View all listings →
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {featured.map((listing) => (
+        <ListingCard listing={listing} />
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,67 @@
+---
+---
+
+<section class="py-20 bg-navy text-white" id="about">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <!-- Left: Text -->
+      <div>
+        <span class="inline-block text-orange-400 font-semibold text-sm uppercase tracking-wide mb-3">Our Story</span>
+        <h2 class="text-3xl md:text-4xl font-black mb-6 leading-tight">
+          10+ Years of Main Street Deals
+        </h2>
+        <p class="text-white/80 text-lg leading-relaxed mb-6">
+          DealBridge was founded by a team of M&A advisors and small business owners who got tired of watching great businesses close because owners couldn't find the right buyer — and buyers couldn't find businesses worth buying.
+        </p>
+        <p class="text-white/80 text-lg leading-relaxed mb-8">
+          We built the platform we wished existed: transparent, confidential, and built around the reality that most business sales are deeply personal transactions — not just spreadsheet exercises.
+        </p>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-6">
+          {[
+            { value: "500+", label: "Businesses Sold" },
+            { value: "$1.2B+", label: "Deal Value Closed" },
+            { value: "48", label: "States Covered" },
+          ].map((stat) => (
+            <div>
+              <p class="text-3xl font-black text-orange-400 mb-1">{stat.value}</p>
+              <p class="text-sm text-white/60">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: Photo + Team cards -->
+      <div class="space-y-4">
+        <!-- Office photo -->
+        <div class="rounded-2xl overflow-hidden h-52">
+          <img
+            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80"
+            alt="DealBridge team in discussion"
+            class="w-full h-full object-cover object-center"
+            loading="lazy"
+          />
+        </div>
+        <!-- Team cards -->
+        <div class="grid grid-cols-2 gap-4">
+        {[
+          { name: "Marcus Webb", role: "Co-Founder & CEO", years: "Former IBD at Goldman" },
+          { name: "Priya Chandler", role: "Head of Deal Advisory", years: "20+ yrs M&A" },
+          { name: "Tom Falkner", role: "Buyer Relations Lead", years: "Serial acquirer, 7 businesses" },
+          { name: "Lena Osei", role: "Seller Advocate", years: "Ex small business owner" },
+        ].map((person) => (
+          <div class="bg-white/10 border border-white/10 rounded-2xl p-5">
+            <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mb-3 text-white font-black text-sm">
+              {person.name.charAt(0)}
+            </div>
+            <h4 class="font-bold text-white text-sm mb-0.5">{person.name}</h4>
+            <p class="text-orange-400 text-xs font-semibold mb-1">{person.role}</p>
+            <p class="text-white/50 text-xs">{person.years}</p>
+          </div>
+        ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

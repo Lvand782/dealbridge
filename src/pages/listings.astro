@@ -1,0 +1,83 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import ListingCard from "../components/ListingCard.astro";
+import { listings, categories } from "../data/listings";
+---
+
+<Base title="Businesses for Sale" description="Browse vetted, profitable businesses available for acquisition on DealBridge.">
+  <Navbar />
+  <main>
+    <!-- Page Header -->
+    <section class="bg-navy text-white py-14">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl md:text-4xl font-black mb-3">Businesses for Sale</h1>
+        <p class="text-white/70 text-lg max-w-xl">
+          Every listing is verified. Sign an NDA to unlock full financials and connect with the seller.
+        </p>
+      </div>
+    </section>
+
+    <!-- Filters + Grid -->
+    <section class="py-12 bg-light-blue min-h-screen">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Category filter chips -->
+        <div class="flex flex-wrap gap-2 mb-10">
+          {categories.map((cat) => (
+            <button
+              class={`category-chip text-sm font-semibold px-4 py-2 rounded-full border transition-colors
+                ${cat === "All" ? "bg-navy text-white border-navy" : "bg-white text-gray-600 border-gray-200 hover:border-navy hover:text-navy"}`}
+              data-category={cat}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        <!-- Listings grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="listings-grid">
+          {listings.map((listing) => (
+            <div class="listing-item" data-category={listing.category}>
+              <ListingCard listing={listing} />
+            </div>
+          ))}
+        </div>
+
+        <!-- NDA note -->
+        <p class="mt-10 text-center text-sm text-gray-400">
+          All buyer inquiries require a signed NDA. Your identity is kept confidential until you choose to engage.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>(".category-chip");
+  const items = document.querySelectorAll<HTMLElement>(".listing-item");
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      // Update active chip
+      chips.forEach((c) => {
+        c.classList.remove("bg-navy", "text-white", "border-navy");
+        c.classList.add("bg-white", "text-gray-600", "border-gray-200");
+      });
+      chip.classList.remove("bg-white", "text-gray-600", "border-gray-200");
+      chip.classList.add("bg-navy", "text-white", "border-navy");
+
+      const selected = chip.dataset.category;
+
+      // Filter items
+      items.forEach((item) => {
+        if (selected === "All" || item.dataset.category === selected) {
+          item.style.display = "";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    });
+  });
+</script>
