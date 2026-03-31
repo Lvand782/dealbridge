@@ -1,0 +1,84 @@
+---
+---
+
+<section class="bg-navy py-14">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center">
+      <!-- Businesses Sold -->
+      <div class="stat-item" data-target="500" data-prefix="" data-suffix="+">
+        <span class="stat-number text-4xl md:text-5xl font-black text-white tabular-nums">0</span>
+        <p class="text-sm text-white/60 mt-2">Businesses Sold</p>
+      </div>
+
+      <!-- In Deal Value -->
+      <div class="stat-item" data-target="1.2" data-prefix="$" data-suffix="B" data-decimals="1">
+        <span class="stat-number text-4xl md:text-5xl font-black text-white tabular-nums">$0</span>
+        <p class="text-sm text-white/60 mt-2">In Deal Value</p>
+      </div>
+
+      <!-- States Covered -->
+      <div class="stat-item" data-target="48" data-prefix="" data-suffix="">
+        <span class="stat-number text-4xl md:text-5xl font-black text-white tabular-nums">0</span>
+        <p class="text-sm text-white/60 mt-2">States Covered</p>
+      </div>
+
+      <!-- Day Close Guarantee -->
+      <div class="stat-item" data-target="90" data-prefix="" data-suffix=" Day">
+        <span class="stat-number text-4xl md:text-5xl font-black text-white tabular-nums">0</span>
+        <p class="text-sm text-white/60 mt-2">Close Guarantee</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function easeOutCubic(t: number): number {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function animateCounter(el: HTMLElement): void {
+    const target = parseFloat(el.dataset.target || "0");
+    const prefix = el.dataset.prefix || "";
+    const suffix = el.dataset.suffix || "";
+    const decimals = parseInt(el.dataset.decimals || "0", 10);
+    const numberEl = el.querySelector(".stat-number") as HTMLElement;
+    if (!numberEl) return;
+
+    const duration = 2000;
+    let start: number | null = null;
+
+    function step(timestamp: number): void {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeOutCubic(progress);
+      const current = easedProgress * target;
+
+      numberEl.textContent = prefix + current.toFixed(decimals) + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        numberEl.textContent = prefix + target.toFixed(decimals) + suffix;
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target as HTMLElement);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  document.querySelectorAll(".stat-item").forEach((item) => {
+    observer.observe(item);
+  });
+</script>

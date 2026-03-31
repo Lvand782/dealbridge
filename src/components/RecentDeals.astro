@@ -1,0 +1,98 @@
+---
+const recentDeals = [
+  {
+    name: "Hartley Construction",
+    category: "General Contracting",
+    location: "Columbus, OH",
+    price: "$2.1M",
+    timeline: "Closed in 52 days",
+    status: "SOLD" as const,
+  },
+  {
+    name: "Sweet Roots Bakery",
+    category: "Food & Beverage",
+    location: "Portland, OR",
+    price: "$380K",
+    timeline: "Closed in 45 days",
+    status: "SOLD" as const,
+  },
+  {
+    name: "Blaze Fitness",
+    category: "Health & Fitness",
+    location: "Atlanta, GA",
+    price: "$620K",
+    timeline: "Closed in 71 days",
+    status: "ACQUIRED" as const,
+  },
+  {
+    name: "Precision Electric",
+    category: "Electrical",
+    location: "Tampa, FL",
+    price: "$1.4M",
+    timeline: "Closed in 63 days",
+    status: "SOLD" as const,
+  },
+];
+---
+
+<section class="py-12 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <span class="inline-block text-orange-500 font-semibold text-sm uppercase tracking-wide mb-3">Proven Results</span>
+      <h2 class="text-3xl md:text-4xl font-black text-navy">Recently Closed Deals</h2>
+    </div>
+
+    <div class="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0 scrollbar-hide">
+      {recentDeals.map((deal) => (
+        <div class="min-w-[270px] flex-shrink-0 snap-start bg-white rounded-2xl shadow-sm hover:shadow-lg transition-shadow border border-gray-100 p-5 lg:min-w-0">
+          <!-- Status badge -->
+          <span
+            class:list={[
+              "inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full mb-4",
+              deal.status === "SOLD"
+                ? "bg-emerald-50 text-emerald-600"
+                : "bg-blue-50 text-blue-600",
+            ]}
+          >
+            {deal.status}
+          </span>
+
+          <!-- Business name -->
+          <h3 class="text-lg font-bold text-navy mb-1">{deal.name}</h3>
+
+          <!-- Category -->
+          <p class="text-sm text-gray-400 mb-3">{deal.category}</p>
+
+          <!-- Sale price -->
+          <p class="text-2xl font-black text-orange-500 mb-4">{deal.price}</p>
+
+          <!-- Location -->
+          <div class="flex items-center gap-1.5 text-sm text-gray-500 mb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            </svg>
+            {deal.location}
+          </div>
+
+          <!-- Timeline -->
+          <div class="flex items-center gap-1.5 text-sm text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+            </svg>
+            {deal.timeline}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>
